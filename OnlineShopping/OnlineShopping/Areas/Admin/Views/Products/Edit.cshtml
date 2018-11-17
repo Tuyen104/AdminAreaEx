@@ -1,0 +1,103 @@
+﻿@model OnlineShopping.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Pictures", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach(var pic in Model.Pictures)
+                {
+                    <img src="~/Uploads/Products/@Model.Id/@pic.Url" height="100" />
+                    <button class="btnremove" picid="@pic.Id">Remove</button>
+                }
+                <input type="file" multiple name="pictures" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    $(document).ready(function () {
+        $(".btnremove").click(function () {
+            var btn = $(this);
+            var picid = btn.attr("picid");
+            if (confirm("Are you sure to delete this picture?")) {
+                $.post("/Amin/Products/DeletePicture/" + picid, function (response) {
+                    if (response == "OK") { //phải giống bên Controller content trả về
+                        btn.parent().remove();
+                    } else {
+                        alert("Khong xoa dc!!!!");
+                    }
+                });
+            }
+        })
+    });
+</script>

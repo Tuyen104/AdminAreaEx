@@ -1,0 +1,56 @@
+﻿@model OnlineShopping.Models.Product
+
+<!-- product-item start -->
+<div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="product-item">
+        <div class="product-img">
+            <a href="@Url.Action("Details","Products", new { id = Model.Id})">
+                @{ 
+                    string src = "~/Content/home/img/product/4.jpg"; //default
+                    var pic = Model.Pictures.FirstOrDefault();
+                    if(pic != null)
+                    {
+                        src = "/Uploads/Products/" + Model.Id + "/" + pic.Url;
+                    }
+                }
+                <img src="@src" alt="" />
+            </a>
+        </div>
+        <div class="product-info">
+            <h6 class="product-title">
+                @{ 
+                    string productname = Model.ProductName;
+                    if(productname.Length > 30)
+                    {
+                        productname = productname.Substring(0, 30);
+                        productname += "...";
+                    }
+                }
+                <a href="@Url.Action("Details","Products", new { id = Model.Id})" title="@Model.ProductName">@productname</a>
+            </h6>
+            <div class="pro-rating">
+                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
+                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+            </div>
+            <h3 class="pro-price">@Model.UnitPrice.ToString("N2")</h3>
+            <ul class="action-button">
+                <li>
+                    <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+                </li>
+                <li>
+                    <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
+                </li>
+                <li>
+                    <a href="#" title="Add to cart" class="btnAddToCart" pid="@Model.Id" pname="@Model.ProductName" punit="@Model.Unit" pprice="@Model.UnitPrice"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- product-item end -->

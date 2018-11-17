@@ -1,0 +1,143 @@
+﻿@model OnlineShopping.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShippingFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.LoginName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.LoginName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod.MethodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod.MethodName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shipping.ShippingName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shipping.ShippingName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.StatusName)
+        </dd>
+
+    </dl>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Unit
+        </th>
+        <th>
+            Unit Price
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Total
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model.OrderDetails)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @(item.Quantity * item.UnitPrice)
+
+            </td>
+            
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

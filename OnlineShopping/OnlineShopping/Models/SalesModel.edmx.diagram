@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="57e65a4b49fe4ef89fa7bce0c2cccd80" Name="Diagram1">
+        <EntityTypeShape EntityType="SalesModel.Category" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Customer" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Employee" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.LevelPermission" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Level" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.OrderDetail" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Order" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.PaymentMethod" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Picture" Width="1.5" PointX="3" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Product" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Shipping" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Status" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesModel.Topic" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
+        <AssociationConnector Association="SalesModel.FK_Categories_Topics" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Orders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Employees_Levels" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Orders_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_LevelLevelPermission" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_OrderDetails_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Orders_PaymentMethods" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Orders_Shipping" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Orders_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Pictures_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="SalesModel.FK_Products_Pictures" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SalesModel.EmployeeLevel" Width="1.5" PointX="1" PointY="1.625" />
+        <AssociationConnector Association="SalesModel.FK_EmployeeLevels_Employees" />
+        <AssociationConnector Association="SalesModel.FK_EmployeeLevels_Levels" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

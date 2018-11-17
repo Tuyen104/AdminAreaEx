@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<OnlineShopping.Models.Category>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    @Html.Editor("kw")
+    <input  type="submit" value="Search"/>
+}
+<table class="table">
+    <tr>
+        <th>
+        <a href="@Url.Action("Index", new { page = Model.PageNumber, kw = ViewBag.kw, sort = ViewBag.sortId })">Id</a>
+        </th>
+        <th>
+            <a href="@Url.Action("Index", new { page = Model.PageNumber, kw = ViewBag.kw, sort = ViewBag.sortName })">Category Name</a>
+        </th>
+        <th>
+            Topic Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic.TopicName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, kw = ViewBag.kw, sort = ViewBag.sort}))
+</p>

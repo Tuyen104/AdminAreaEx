@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OnlineShopping.Models.Topic>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Topics", new { @class = "myaction" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TopicName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopicName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "myaction" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "myaction" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "myaction" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    $(document).ready(function () {
+        $(".myaction").click(function () {
+            var dialog = $("#myModal");
+            dialog.modal("show");
+            //load dữ liệu lên dialog
+            $("#myContent").load($(this).attr("href"));
+            
+            
+            return false; //hủy lệnh hyperlink đi (do đang xử lý trên thẻ a)
+        });
+    });
+</script>

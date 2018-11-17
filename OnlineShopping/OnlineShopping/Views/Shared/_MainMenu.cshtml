@@ -1,0 +1,37 @@
+﻿@model IEnumerable<OnlineShopping.Models.Topic>
+
+
+@*@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopicName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}*@
+
+<div class="mega-menu-area clearfix">
+    <div class="mega-menu-link mega-menu-link-4  f-left">
+        @foreach (var item in Model)
+        {
+        <ul class="single-mega-item">
+            <li class="menu-title">@item.TopicName</li>
+            @foreach (var cat in item.Categories)
+            {
+                <li>
+                    <a href="@Url.Action("Category","Products", new { id = cat.Id})">@cat.CategoryName</a>
+                </li>
+
+            }
+
+        </ul>
+        }
+
+    </div>
+</div>
+
